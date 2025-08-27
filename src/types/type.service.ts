@@ -11,13 +11,14 @@ export class TypeService {
     private readonly typeRepository: Repository<Type>,
   ) {}
 
+    findOne(id: number): Promise<Type | null> {
+    return this.typeRepository.findOne({ where: { id }, relations: ['menus'] });
+  }
   findAll(): Promise<Type[]> {
     return this.typeRepository.find({ relations: ['menus'] });
   }
 
-  findOne(id: number): Promise<Type | null> {
-    return this.typeRepository.findOne({ where: { id }, relations: ['menus'] });
-  }
+
 
   create(data: Partial<Type>): Promise<Type> {
     const newType = this.typeRepository.create(data);

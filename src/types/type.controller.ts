@@ -9,7 +9,8 @@ import {
   Put, 
   UseGuards, 
   UploadedFile, 
-  UseInterceptors 
+  UseInterceptors, 
+  Query
 } from '@nestjs/common';
 import { TypeService } from './type.service';
 import { Type } from './type.entity';
@@ -29,9 +30,9 @@ export class TypeController {
     return this.typeService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: number): Promise<Type | null> {
-    return this.typeService.findOne(id);
+  @Get('by-id')
+  findOne(@Query('id') id: string): Promise<Type | null> {
+    return this.typeService.findOne(+id);
   }
 
   // إنشاء نوع جديد مع رفع صورة – محمي بـ JWT
