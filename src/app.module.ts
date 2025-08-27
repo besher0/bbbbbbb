@@ -10,11 +10,10 @@ import  { dataSourceOptions } from 'db/data-source';
 
 @Module({
   imports: [
-    // تحميل إعدادات البيئة من .env
+    // 1
     ConfigModule.forRoot({ isGlobal: true }),
 
     // إعدادات قاعدة البيانات PostgreSQL
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     TypeOrmModule.forRoot(dataSourceOptions),
     AuthModule,
     UsersModule,
